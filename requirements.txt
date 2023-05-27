@@ -1,0 +1,6 @@
+aiogram
+mysqlclient
+mysql
+mysql-connector-python
+telebot
+pyTelegramBotAPI

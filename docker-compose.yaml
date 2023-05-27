@@ -1,0 +1,36 @@
+version: '3.10'
+
+services:
+ web:
+  build: ./web
+  command: python3 test.py
+  volumes:
+  - .:/PR 
+  depends_on:
+  - db
+  networks:
+  - FFFF
+    #ipv4_address: 172.16.0.13
+ db:
+  container_name: test_db
+  image: mysql
+  ports:
+  - 3306:3306
+  environment:
+  - MYSQL_DATABASE=finance
+   #- MYSQL_USER: 'admin'
+   #- MYSQL_PASSWORD: 'p@ssw0rd1'
+  - MYSQL_ROOT_PASSWORD=p@ssw0rd1
+    #restart: on-failure
+  networks:
+  - FFFF
+    #ipv4_address: 172.16.0.14
+
+networks:
+ FFFF:
+  #name: zzzzz
+  driver: bridge
+  #ipam:
+   ##driver: default
+  ## config:
+    ##- subnet: 172.16.0.0/24 
